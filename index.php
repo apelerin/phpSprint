@@ -82,6 +82,11 @@
         for (item of menus) {
             item.style.display = "none";
         }
-        document.getElementById(id).style.display = "block";
+        var node = document.getElementById(id);
+        node.style.display = "block";
+        var all = node.getElementsByTagName('*');
+        for (var i = -1, l = all.length; ++i < l;) {
+            all[i].style.display = "block";
+        }
     }
 </script>
