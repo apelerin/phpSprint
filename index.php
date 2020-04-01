@@ -66,6 +66,18 @@
         ?>
     </div>
     <div id="m-2">
+        <div id="story-1">
+            <h3>Membres de l'équipe :</h3>
+            <ul>
+                <li>Axel</li>
+                <li>Eliott</li>
+                <li>Mathieu</li>
+            </ul>
+            <br>
+            <h3>Nombre de stories terminés (réalisés / à faire) :</h3>
+            <br>
+            <h3>Liste des users stories terminés/non terminés :</h3>
+        </div>
     </div>
     <div id="m-3">
     </div>
