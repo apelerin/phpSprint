@@ -1,7 +1,8 @@
 <?php
     ini_set('display_errors', 1);
     require 'class/AutoForm.php';
-    require 'class/utilitaries.php'
+    require 'class/utilitaries.php';
+    require 'class/request.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,6 +102,14 @@ include "pages/header.php";
         </div>
     </div>
     <div id="m-3">
+        <?php
+        $dbUser = 'root';
+        $dbPass = 'root';
+        $dbName = 'phpposte';
+        $dbType = 'mysql';
+        $dbAddress = 'localhost';
+        $db = new request($dbUser, $dbPass, $dbName, $dbType, $dbAddress);
+        ?>
     </div>
     <div id="m-4">
     </div>
