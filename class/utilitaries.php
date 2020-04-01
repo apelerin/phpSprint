@@ -30,4 +30,11 @@ class utilitaries
             echo "Story" . $story . "</br>" ;
         }
     }
+
+    //todo A more algorithmic approach
+    public static function getDateFromSeconds($scd) {
+        $date = date('m/d/Y h:i:s', time());
+        $stamp = strtotime($date) - $scd;
+        return date("d/m/y", $stamp);
+    }
 }
