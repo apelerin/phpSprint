@@ -1,6 +1,7 @@
 <?php
     ini_set('display_errors', 1);
     require 'class/AutoForm.php';
+    require 'class/NBpremier.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +67,14 @@
         ?>
     </div>
     <div id="m-2">
+        <form action="" method="post">
+            <?php
+            autoForm::formBasic("limite");
+            ?>
+            <input type="submit" value="ok">
+        <?php
+        affichePremiers($_POST['limite']);
+        ?>
     </div>
     <div id="m-3">
     </div>
