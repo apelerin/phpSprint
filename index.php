@@ -1,6 +1,7 @@
 <?php
     ini_set('display_errors', 1);
     require 'class/AutoForm.php';
+    require 'class/utilitaries.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +78,24 @@
             <h3>Nombre de stories terminés (réalisés / à faire) :</h3>
             <br>
             <h3>Liste des users stories terminés/non terminés :</h3>
+        </div>
+        <div id="story-5">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("1stnumber");
+                autoForm::formBasic("2ndnumber");
+                autoForm::formBasic("3rdnumber");
+                ?>
+                <input type="submit" value="Submit">
+            </form>
+            <?php
+            $numbers = autoForm::getInput();
+            // Check if we got the datas
+            if (!empty($numbers['1stnumber'])) {
+                $smallest = utilitaries::getSmallestNbr($numbers['1stnumber'], $numbers['2ndnumber'], $numbers['3rdnumber']);
+                echo 'Result: ' . $smallest;
+            }
+            ?>
         </div>
     </div>
     <div id="m-3">
