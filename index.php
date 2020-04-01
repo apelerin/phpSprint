@@ -1,7 +1,12 @@
 <?php
     ini_set('display_errors', 1);
     require 'class/AutoForm.php';
+<<<<<<< HEAD
     require 'class/NBpremier.php'
+=======
+    require 'class/utilitaries.php';
+    require 'class/request.php';
+>>>>>>> f0f7e8d660da2b22deae661e06f6692dec2adf47
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,18 +17,32 @@
 </head>
 <body>
 
-<header>
-    <div id="menu">
-        <a href="#" onclick="hideMyModal('m-0')">Accueil</a>
-        <a href="#" onclick="hideMyModal('m-1')">Exercice</a>
-        <a href="#" onclick="hideMyModal('m-2')">Algorithm</a>
-        <a href="#" onclick="hideMyModal('m-3')">Database</a>
-        <a href="#" onclick="hideMyModal('m-4')">La Poste <img src="images.png" width="20" height="20"></a>
-    </div>
-</header>
+<?php
+include "pages/header.php";
+?>
 
 <div id="menu-content">
     <div id="m-0">
+        <div id="story-1">
+            <h3>Membres de l'équipe :</h3>
+            <ul>
+                <li>Axel</li>
+                <li>Eliott</li>
+                <li>Mathieu</li>
+            </ul>
+            <br>
+            <h3>Nombre de stories terminés (<?php
+                sizeof(utilitaries::$storiesDone);
+                ?> /
+                <?php
+                sizeof(utilitaries::$storiesToDo);
+                ?>) :</h3>
+            <br>
+            <h3>Liste des users stories:</h3>
+            <?php
+            utilitaries::displayListStories();
+            ?>
+        </div>
     </div>
     <div id="m-1">
         <form action="" method="post">
@@ -67,6 +86,7 @@
         ?>
     </div>
     <div id="m-2">
+<<<<<<< HEAD
         <form action="" method="post">
             <?php
             autoForm::formBasic("limite");
@@ -75,12 +95,44 @@
         <?php
         affichePremiers($_POST['limite']);
         ?>
+=======
+        <div id="story-5">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("1stnumber");
+                autoForm::formBasic("2ndnumber");
+                autoForm::formBasic("3rdnumber");
+                ?>
+                <input type="submit" value="Submit">
+            </form>
+            <?php
+            $numbers = autoForm::getInput();
+            // Check if we got the datas
+            if (!empty($numbers['1stnumber'])) {
+                $smallest = utilitaries::getSmallestNbr($numbers['1stnumber'], $numbers['2ndnumber'], $numbers['3rdnumber']);
+                echo 'Result: ' . $smallest;
+            }
+            ?>
+        </div>
+>>>>>>> f0f7e8d660da2b22deae661e06f6692dec2adf47
     </div>
     <div id="m-3">
+        <?php
+        $dbUser = 'root';
+        $dbPass = 'root';
+        $dbName = 'phpposte';
+        $dbType = 'mysql';
+        $dbAddress = 'localhost';
+        $db = new request($dbUser, $dbPass, $dbName, $dbType, $dbAddress);
+        ?>
     </div>
     <div id="m-4">
     </div>
 </div>
+
+<?php
+include "pages/footer.php"
+?>
 
 </body>
 </html>
