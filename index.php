@@ -12,18 +12,32 @@
 </head>
 <body>
 
-<header>
-    <div id="menu">
-        <a href="#" onclick="hideMyModal('m-0')">Accueil</a>
-        <a href="#" onclick="hideMyModal('m-1')">Exercice</a>
-        <a href="#" onclick="hideMyModal('m-2')">Algorithm</a>
-        <a href="#" onclick="hideMyModal('m-3')">Database</a>
-        <a href="#" onclick="hideMyModal('m-4')">La Poste <img src="images.png" width="20" height="20"></a>
-    </div>
-</header>
+<?php
+include "pages/header.php";
+?>
 
 <div id="menu-content">
     <div id="m-0">
+        <div id="story-1">
+            <h3>Membres de l'équipe :</h3>
+            <ul>
+                <li>Axel</li>
+                <li>Eliott</li>
+                <li>Mathieu</li>
+            </ul>
+            <br>
+            <h3>Nombre de stories terminés (<?php
+                sizeof(utilitaries::$storiesDone);
+                ?> /
+                <?php
+                sizeof(utilitaries::$storiesToDo);
+                ?>) :</h3>
+            <br>
+            <h3>Liste des users stories:</h3>
+            <?php
+            utilitaries::displayListStories();
+            ?>
+        </div>
     </div>
     <div id="m-1">
         <form action="" method="post">
@@ -67,18 +81,6 @@
         ?>
     </div>
     <div id="m-2">
-        <div id="story-1">
-            <h3>Membres de l'équipe :</h3>
-            <ul>
-                <li>Axel</li>
-                <li>Eliott</li>
-                <li>Mathieu</li>
-            </ul>
-            <br>
-            <h3>Nombre de stories terminés (réalisés / à faire) :</h3>
-            <br>
-            <h3>Liste des users stories terminés/non terminés :</h3>
-        </div>
         <div id="story-5">
             <form action="" method="post">
                 <?php
@@ -103,6 +105,10 @@
     <div id="m-4">
     </div>
 </div>
+
+<?php
+include "pages/footer.php"
+?>
 
 </body>
 </html>
