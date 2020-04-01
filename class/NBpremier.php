@@ -1,9 +1,8 @@
 <?php
-ini_set('display_errors', 1);
-
 
 function affichePremiers($n){
         echo "Les nombres premiers entre 0 et ".$n." sont : ";
+        echo " | ";
         $negatif = false;
         if($n<0){
             $negatif = true;
@@ -22,7 +21,7 @@ function affichePremiers($n){
                 if($negatif){
                     echo "0";
                 }
-                echo $i.", ";
+                echo $i." | ";
             }
         }
     }

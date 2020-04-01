@@ -1,12 +1,9 @@
 <?php
     ini_set('display_errors', 1);
     require 'class/AutoForm.php';
-<<<<<<< HEAD
-    require 'class/NBpremier.php'
-=======
+    require 'class/NBpremier.php';
     require 'class/utilitaries.php';
     require 'class/request.php';
->>>>>>> f0f7e8d660da2b22deae661e06f6692dec2adf47
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,16 +83,17 @@ include "pages/header.php";
         ?>
     </div>
     <div id="m-2">
-<<<<<<< HEAD
-        <form action="" method="post">
+        <div id="story3">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("limite");
+                ?>
+                <input type="submit" value="ok">
             <?php
-            autoForm::formBasic("limite");
+            if (!empty(autoForm::getInput()['limite']))
+                affichePremiers(autoForm::getInput()['limite']);
             ?>
-            <input type="submit" value="ok">
-        <?php
-        affichePremiers($_POST['limite']);
-        ?>
-=======
+        </div>
         <div id="story-5">
             <form action="" method="post">
                 <?php
@@ -114,7 +112,6 @@ include "pages/header.php";
             }
             ?>
         </div>
->>>>>>> f0f7e8d660da2b22deae661e06f6692dec2adf47
     </div>
     <div id="m-3">
         <?php
