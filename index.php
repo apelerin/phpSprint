@@ -5,6 +5,7 @@
     require 'class/utilitaries.php';
     require 'class/request.php';
     require 'class/binaire.php';
+    require 'class/regex.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,11 +124,32 @@ include "pages/header.php";
                 <input type="submit" value="ok">
             </form>
             <?php 
+            if (!empty(autoForm::getInput()['votre_nombre']))
+                getBinaire($_POST['votre_nombre']);
             
-            getBinaire($_POST['votre_nombre']);
+            
 
             ?>
         
+
+        </div>
+        <div id="story-10">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("addresse_mail");
+                ?>
+                <input type="submit" value="envoyé">
+            </form>
+            <?php 
+            if (!empty(autoForm::getInput()['addresse_mail']))
+                getRegex(autoForm::getInput()['addresse_mail']);
+            
+            
+
+            ?>
+        
+
+            
 
         </div>
 
@@ -150,6 +172,7 @@ include "pages/header.php";
         </div>
     </div>
 
+
     <div id="m-3">
         <?php
         $dbUser = 'root';
@@ -165,7 +188,7 @@ include "pages/header.php";
 </div>
 
 <?php
-include "pages/footer.php"
+include "pages/footer.php";
 ?>
 
 </body>
