@@ -4,6 +4,7 @@
     require 'class/NBpremier.php';
     require 'class/utilitaries.php';
     require 'class/request.php';
+    require 'class/binaire.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +94,7 @@ include "pages/header.php";
             if (!empty(autoForm::getInput()['limite']))
                 affichePremiers(autoForm::getInput()['limite']);
             ?>
+        </form>
         </div>
         <div id="story-5">
             <form action="" method="post">
@@ -111,7 +113,26 @@ include "pages/header.php";
                 echo 'Result: ' . $smallest;
             }
             ?>
+            </div>
+   
+            <div id="story-9">
+                <form action="" method="post">
+                <?php
+                autoForm::formBasic("votre nombre");
+                ?>
+                <input type="submit" value="ok">
+            </form>
+            <?php 
+            
+            getBinaire($_POST['votre_nombre']);
+
+            ?>
+        
+
         </div>
+
+     </div>
+
 
         <div id="story4">
             <form action="" method="post">
@@ -142,6 +163,7 @@ include "pages/header.php";
             ?>
         </div>
     </div>
+
     <div id="m-3">
         <?php
         $dbUser = 'root';
