@@ -170,6 +170,20 @@ include "pages/header.php";
             }
             ?>
         </div>
+        <div id="story8">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("decimal");
+                ?>
+                <input type="submit" value="Submit decimal">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['decimal'])) {
+                $hexa = utilitaries::convertDecToHexa(autoForm::getInput()['decimal']);
+                echo $hexa;
+            }
+            ?>
+        </div>
     </div>
 
 
