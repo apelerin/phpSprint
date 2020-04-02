@@ -220,6 +220,16 @@ include "pages/header.php";
             $db->displayTabUsers();
             ?>
         </div>
+        <div id="story14">
+            <form action="" method="post">
+                <select>
+                    <?php
+                    $db->fillDropDown();
+                    ?>
+                </select>
+                <input type="submit" value="Update">
+            </form>
+        </div>
     </div>
     <div id="m-4">
     </div>

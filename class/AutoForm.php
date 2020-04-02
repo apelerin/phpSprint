@@ -14,6 +14,10 @@ class autoForm
         }
     }
 
+    public static function formOption($opt) {
+        echo '<option value="' . $opt['id'] . '">' . $opt['first_name'] . " " . $opt['last_name'] . '</option>';
+    }
+
     public static function formTextArea($name, $label){
         echo '<label for="' . $label . '">' . $name . '</label>';
         echo '<textarea name="' . $name . '"></textarea>';

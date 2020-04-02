@@ -92,4 +92,11 @@ class request
         }
         echo "</table>";
     }
+
+    public function fillDropDown(){
+        $tab = $this->getAllRows("users", "id, first_name, last_name");
+        foreach ($tab as $row) {
+            autoForm::formOption($row);
+        }
+    }
 }
