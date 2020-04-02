@@ -56,11 +56,7 @@ class request
     public function getAllRows($table, $columns)
     {
         $req = "SELECT " . $columns . " FROM " . $table;
-        $tab = $this->_bdd->query($req);
-        foreach ($tab as $row) {
-            print_r($row['name'] . " " . $row['specie'] . " " . $row['life']);
-            echo "</br>";
-        }
+        return $this->_bdd->query($req);
     }
 
     public function insertInTable($table, $columns) {
@@ -70,7 +66,30 @@ class request
         }
         $req = rtrim($req, ",");
         $req = $req . ");";
-        echo $req;
+        $this->_bdd->SetAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $this->_bdd->query($req);
+    }
+
+    public function displayTabUsers() {
+        $tab = $this->getAllRows("users", "*");
+        $even = true;
+        echo "<table id='user-table'>";
+        foreach ($tab as $row) {
+            if ($even) {
+                echo "<tr class='tr-even'>";
+                $even = false;
+            }
+            else {
+                echo "<tr class='tr-uneven'>";
+                $even = true;
+            }
+            foreach ($row as $col) {
+                echo "<td>";
+                echo "$col";
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
     }
 }

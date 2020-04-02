@@ -273,6 +273,11 @@ include "pages/header.php";
             $db->insertInTable("users", $arr);
             ?>
         </div>
+        <div id="story13">
+            <?php
+            $db->displayTabUsers();
+            ?>
+        </div>
     </div>
     <div id="m-4">
     </div>
