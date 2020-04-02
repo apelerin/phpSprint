@@ -30,10 +30,10 @@ include "pages/header.php";
             </ul>
             <br>
             <h3>Nombre de stories terminés (<?php
-                sizeof(utilitaries::$storiesDone);
+                count(utilitaries::$storiesDone);
                 ?> /
                 <?php
-                sizeof(utilitaries::$storiesToDo);
+                count(utilitaries::$storiesToDo);
                 ?>) :</h3>
             <br>
             <h3>Liste des users stories:</h3>
@@ -130,7 +130,26 @@ include "pages/header.php";
         
 
         </div>
+
      </div>
+
+
+        <div id="story4">
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("secondes");
+                ?>
+                <input type="submit" value="Submit">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['secondes'])) {
+                $past_date = utilitaries::getDateFromSeconds(autoForm::getInput()['secondes']);
+                echo $past_date;
+            }
+            ?>
+        </div>
+    </div>
+
     <div id="m-3">
         <?php
         $dbUser = 'root';
