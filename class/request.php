@@ -62,4 +62,15 @@ class request
             echo "</br>";
         }
     }
+
+    public function insertInTable($table, $columns) {
+        $req = "INSERT INTO " . $table . " VALUES (NULL, ";
+        foreach ($columns as $col) {
+            $req = $req . "'" . $col . "'" . ",";
+        }
+        $req = rtrim($req, ",");
+        $req = $req . ");";
+        echo $req;
+        $this->_bdd->query($req);
+    }
 }
