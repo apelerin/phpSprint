@@ -11,13 +11,13 @@ class request
     private $_bdd;
 
     /**
-     * Méthode constructeur permettant de créer une connexion
-     * avec notre base de données
-     * @$user =>    permet d'indiquer l'utilisateur PhpMyAdmin
-     * @$pwd  =>    permet d'indiquer le mot de passe de l'utilisateur PHPMyAdmin
-     * @dbname=>    permet d'indiquer le nom de la base de données à laquelle je veux me connecter
-     * @dbtype=>    permet d'indiquer le type de base de donnée sur lequel je vais établir une connexion (Oracle, mySQL...)
-     * @dbadress=>  permet de fournir l'adresse sur laquelle est installé notre base (localhost ou l'adresse IP de notre serveur/ ou nom de domaine)
+     * Method constructor to create a connection
+     * to our database
+     * @param $user string username of phpmyadmin
+     * @param $pwd string password of user of phpmyadmin
+     * @param $dbname string name of the database we want to connect to
+     * @param $dbtype string indicate the type of database we use (mysql, postgresql, sqlite...)
+     * @param $dbadress string  ip adresse to which we access the database, in our case 127.0.0.1 or localhost
      */
     public function __construct($user, $pwd, $dbname, $dbtype, $dbadress)
     {
@@ -31,9 +31,7 @@ class request
     }
 
     /**
-     * Méthode qui permet d'établir
-     * une connexion avec la base de données
-     * via l'objet PDO en utilisant les variables de classes
+     * Method to connect to the database via a DBO object
      */
     private function connectDB()
     {
@@ -50,15 +48,26 @@ class request
     }
 
     /**
-     * Permet de réaliser une requête Select
-     * et d'afficher chaque enregistrement à l'utilisateur
+     * @param $table string table from which we want the rows
+     * @param $columns string columns we want to have
+     * @return an array containing the rows
      */
     public function getAllRows($table, $columns)
     {
         $req = "SELECT " . $columns . " FROM " . $table;
+        $this->_bdd->SetAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $this->_bdd->query($req);
     }
 
+    public function getUserbyId($id) {
+        $req = "SELECT * FROM users WHERE id = " . $id . ";";
+        return $this->_bdd->query($req);
+    }
+
+    /**
+     * @param $table string table in which we want to insert stuff.
+     * @param $columns table columns in which we want to fill
+     */
     public function insertInTable($table, $columns) {
         $req = "INSERT INTO " . $table . " VALUES (NULL, ";
         foreach ($columns as $col) {
@@ -70,6 +79,22 @@ class request
         $this->_bdd->query($req);
     }
 
+    public function updateUser($data) {
+        $req = "UPDATE users 
+        set first_name = '" . $data["first_name"] . "',
+        last_name = '" . $data["last_name"] . "',
+        gender = '" . $data["gender"] . "',
+        mail = '" . $data["mail"] . "',
+        zip_code = " . $data["zip_code"] . ",
+        birthday = " . $data["birthday"] . "
+        WHERE id = " . $data['id'] . ";";
+        echo $req;
+        $this->_bdd->exec($req);
+    }
+
+    /**
+     * display all users in database in a html table
+     */
     public function displayTabUsers() {
         $tab = $this->getAllRows("users", "*");
         $even = true;
@@ -91,5 +116,15 @@ class request
             echo "</tr>";
         }
         echo "</table>";
+    }
+
+    /**
+     * use all user in database to fill a dropdown menu
+     */
+    public function fillDropDown(){
+        $tab = $this->getAllRows("users", "id, first_name, last_name");
+        foreach ($tab as $row) {
+            autoForm::formOption($row);
+        }
     }
 }

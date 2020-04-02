@@ -3,8 +3,8 @@
 
 class utilitaries
 {
-    public static $storiesDone = [1, 2, 3];
-    public static $storiesToDo = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    public static $storiesDone = [1, 2, 3, 4, 5, 8, 9];
+    public static $storiesToDo = [6, 7, 10, 11, 12, 13, 14, 15, 16];
 
     public static function getSmallestNbr($a, $b, $c) {
         if ($a < $b and $a < $c) {
@@ -31,13 +31,22 @@ class utilitaries
         }
     }
 
-    //todo A more algorithmic approach
+    /**
+     * Method to get the date in dd/mm/yy format the number of given second in the past
+     * @param $scd int number of second we want to go to the past
+     * @return string date corresponding in format dd/mm/yy
+     */
     public static function getDateFromSeconds($scd) {
         $date = date('m/d/Y h:i:s', time());
         $stamp = strtotime($date) - $scd;
         return date("d/m/y", $stamp);
     }
 
+    /**
+     * Convert a decimal to an hexadecimal
+     * @param $nbr int number we want to convert to hexadecimal
+     * @return string the result of the conversion decimal => hexadecimal
+     */
     public static function convertDecToHexa($nbr) {
         $map_hexa = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
 

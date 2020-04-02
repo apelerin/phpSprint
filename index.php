@@ -269,13 +269,49 @@ include "pages/header.php";
             </form>
             <?php
             $result = autoForm::getInput();
-            $arr = [$result['first_name'], $result['last_name'], $result['birthday'], $result['gender'], $result['mail'], $result['zip_code']];
-            $db->insertInTable("users", $arr);
+            if(!empty($result['first_name'])) {
+                $arr = [$result['first_name'], $result['last_name'], $result['birthday'], $result['gender'], $result['mail'], $result['zip_code']];
+                //$db->insertInTable("users", $arr);
+            }
             ?>
         </div>
         <div id="story13">
             <?php
             $db->displayTabUsers();
+            ?>
+        </div>
+        <div id="story14">
+            <form action="" method="post">
+                <select name ="framboise">
+                    <?php
+                    $db->fillDropDown();
+                    ?>
+                </select>
+                <input type="submit" value="Get Selected Values">
+            </form>
+            <?php
+            if(!empty(autoForm::getInput()['framboise'])) {
+                $value = $db->getUserbyId(autoForm::getInput()['framboise']);
+                $value = $value->fetch(PDO::FETCH_ASSOC);
+            }
+            //function to get user data from id
+            $default = ['first_name' => '','last_name' => '','birthday' => '','gender' => '','mail' => '','zip_code' => ''];
+            ?>
+            <form action="" method="post">
+                <?php
+                if (!empty($value['first_name'])) {
+                    autoForm::formAForm($value, 'true');
+                }
+                else {
+                    autoForm::formAForm($default, 'false');
+                }
+                ?>
+                <input type="submit" value="Update">
+            </form>
+            <?php
+            if (autoForm::getInput()['boolSub'] === 'true') {
+                $db->updateUser(autoForm::getInput());
+            }
             ?>
         </div>
     </div>
@@ -289,7 +325,6 @@ include "pages/footer.php";
 
 </body>
 </html>
-
 <script>
     function hideMyModal(id) {
         var menus = document.getElementById("menu-content").getElementsByTagName("div");
