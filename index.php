@@ -196,6 +196,30 @@ include "pages/header.php";
         $dbAddress = 'localhost';
         $db = new request($dbUser, $dbPass, $dbName, $dbType, $dbAddress);
         ?>
+
+        <div id="story12">
+            <form action="" method ="post">
+                <?php
+                autoForm::formBasic("first_name");
+                autoForm::formBasic("last_name");
+                autoForm::formBasic("birthday");
+                autoForm::formBasic("gender");
+                autoForm::formBasic("mail");
+                autoForm::formBasic("zip_code");
+                ?>
+                <input type="submit" value="Submit him">
+            </form>
+            <?php
+            $result = autoForm::getInput();
+            $arr = [$result['first_name'], $result['last_name'], $result['birthday'], $result['gender'], $result['mail'], $result['zip_code']];
+            $db->insertInTable("users", $arr);
+            ?>
+        </div>
+        <div id="story13">
+            <?php
+            $db->displayTabUsers();
+            ?>
+        </div>
     </div>
     <div id="m-4">
     </div>
