@@ -34,12 +34,7 @@ include "pages/header.php";
                 <li>Mathieu</li>
             </ul>
             <br>
-            <h3>Nombre de stories terminés (<?php
-                count(utilitaries::$storiesDone);
-                ?> /
-                <?php
-                count(utilitaries::$storiesToDo);
-                ?>) :</h3>
+            <h3>Nombre de stories terminés (12/ 16)</h3>
             <br>
             <h3>Liste des users stories:</h3>
             <?php
@@ -96,6 +91,8 @@ include "pages/header.php";
                     ?>
 
         <div id="story3">
+            <h3>Story 3: nombres premiers</h3>
+            <p>Entrez un nombre</p>
             <form action="" method="post">
                 <?php
                 autoForm::formBasic("limite");
@@ -107,7 +104,24 @@ include "pages/header.php";
             ?>
         </form>
         </div>
+        <div id="story4">
+            <h3>Story 4: Date minus secondes</h3>
+            <p>Entrez un nombre de secondes à déduire de la date actuelle:</p>
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("secondes");
+                ?>
+                <input type="submit" value="Submit">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['secondes'])) {
+                $past_date = utilitaries::getDateFromSeconds(autoForm::getInput()['secondes']);
+                echo $past_date;
+            }
+            ?>
         <div id="story-5">
+            <h3>Story 5: Plus petit nombre</h3>
+            <p>Entrez trois nombres:</p>
             <form action="" method="post">
                 <?php
                 autoForm::formBasic("1stnumber");
@@ -126,7 +140,23 @@ include "pages/header.php";
             ?>
             </div>
 
+        <div id="story-6">
+            <h3>Story 6: Chiffre romain</h3>
+            <form action="" method="post">
+                <?php
+                autoForm::formBasic("votre nombre");
+                ?>
+                <input type="submit" value="ok">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['votre_nombre']))
+                getCR(autoForm::getInput()['votre_nombre']);
+            ?>
+        </div>
+
              <div id="story-7">
+                <h3>Story 7: Factorielle</h3>
+                 <p>Entrez un nomnbre:</p>
                 <form action="" method="post">
                 <?php
                 autoForm::formBasic("votre_factorielle");
@@ -136,33 +166,24 @@ include "pages/header.php";
             <?php 
             if (!empty(autoForm::getInput()['votre_factorielle']))
                 getFactorielle(autoForm::getInput()['votre_factorielle']);
-            
-            
-
             ?>
              </div>
-
-
-   
-            <div id="story-6">
+            <div id="story8">
                 <form action="" method="post">
+                    <?php
+                    autoForm::formBasic("decimal");
+                    ?>
+                    <input type="submit" value="Submit decimal">
+                </form>
                 <?php
-                autoForm::formBasic("votre nombre");
+                if (!empty(autoForm::getInput()['decimal'])) {
+                    $hexa = utilitaries::convertDecToHexa(autoForm::getInput()['decimal']);
+                    echo $hexa;
+                }
                 ?>
-                <input type="submit" value="ok">
-            </form>
-            <?php 
-            if (!empty(autoForm::getInput()['votre_nombre']))
-                getCR(autoForm::getInput()['votre_nombre']);
-            
-            
-
-            ?>
-        
-
-        </div>
-
+            </div>
             <div id="story-9">
+                <h3>Story 9: Conversion binaire</h3>
                 <form action="" method="post">
                 <?php
                 autoForm::formBasic("votre nombre");
@@ -172,11 +193,9 @@ include "pages/header.php";
             <?php 
             if (!empty(autoForm::getInput()['votre_nombre']))
                 getBinaire($_POST['votre_nombre']);
-            
-            
-
             ?>
         <div id="story-10">
+            <h3>Story 10: Check mail</h3>
             <form action="" method="post">
                 <?php
                 autoForm::formBasic("addresse_mail");
@@ -186,13 +205,8 @@ include "pages/header.php";
             <?php 
             if (!empty(autoForm::getInput()['addresse_mail']))
                 getRegex(autoForm::getInput()['addresse_mail']);
-            
-            
 
             ?>
-        
-
-            
 
         </div>
         <!--
@@ -214,37 +228,11 @@ include "pages/header.php";
      </div>
 
         -->
-        <div id="story4">
-            <form action="" method="post">
-                <?php
-                autoForm::formBasic("secondes");
-                ?>
-                <input type="submit" value="Submit">
-            </form>
-            <?php
-            if (!empty(autoForm::getInput()['secondes'])) {
-                $past_date = utilitaries::getDateFromSeconds(autoForm::getInput()['secondes']);
-                echo $past_date;
-            }
-            ?>
-        </div>
-        <div id="story8">
-            <form action="" method="post">
-                <?php
-                autoForm::formBasic("decimal");
-                ?>
-                <input type="submit" value="Submit decimal">
-            </form>
-            <?php
-            if (!empty(autoForm::getInput()['decimal'])) {
-                $hexa = utilitaries::convertDecToHexa(autoForm::getInput()['decimal']);
-                echo $hexa;
-            }
-            ?>
+
         </div>
     </div>
 
-
+    </div>
     <div id="m-3">
         <?php
         $dbUser = 'root';
@@ -256,6 +244,7 @@ include "pages/header.php";
         ?>
 
         <div id="story12">
+            <h3>Story 12: Formulaire et insertion en base d'un user</h3>
             <form action="" method ="post">
                 <?php
                 autoForm::formBasic("first_name");
@@ -271,16 +260,18 @@ include "pages/header.php";
             $result = autoForm::getInput();
             if(!empty($result['first_name'])) {
                 $arr = [$result['first_name'], $result['last_name'], $result['birthday'], $result['gender'], $result['mail'], $result['zip_code']];
-                //$db->insertInTable("users", $arr);
+                $db->insertInTable("users", $arr);
             }
             ?>
         </div>
         <div id="story13">
+            <h3>Story 13: Display tous les users en table dans un tableau</h3>
             <?php
             $db->displayTabUsers();
             ?>
         </div>
         <div id="story14">
+            <h3>Story 14: Choix d'un user dans un dropdown tapant en base et pré remplissage d'un formulaire pour update</h3>
             <form action="" method="post">
                 <select name ="framboise">
                     <?php
@@ -294,7 +285,7 @@ include "pages/header.php";
                 $value = $db->getUserbyId(autoForm::getInput()['framboise']);
                 $value = $value->fetch(PDO::FETCH_ASSOC);
             }
-            //function to get user data from id
+
             $default = ['first_name' => '','last_name' => '','birthday' => '','gender' => '','mail' => '','zip_code' => ''];
             ?>
             <form action="" method="post">
@@ -309,7 +300,7 @@ include "pages/header.php";
                 <input type="submit" value="Update">
             </form>
             <?php
-            if (autoForm::getInput()['boolSub'] === 'true') {
+            if (!empty(autoForm::getInput()['boolSub']) && autoForm::getInput()['boolSub'] === 'true') {
                 $db->updateUser(autoForm::getInput());
             }
             ?>
@@ -332,10 +323,20 @@ include "pages/footer.php";
             item.style.display = "none";
         }
         var node = document.getElementById(id);
-        node.style.display = "block";
+        if (node.tagName === "tr" || node.tagName === "table" || node.tagName === "td") {
+            node.style.display = "flex";
+        }
+        else {
+            node.style.display = "block";
+        }
         var all = node.getElementsByTagName('*');
         for (var i = -1, l = all.length; ++i < l;) {
-            all[i].style.display = "block";
+            if (all[i].tagName === "tr" || all[i].tagName === "table" || all[i].tagName === "td") {
+                all[i].style.display = "flex";
+            }
+            else {
+                all[i].style.display = "block";
+            }
         }
     }
 </script>

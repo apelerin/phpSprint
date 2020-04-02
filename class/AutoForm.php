@@ -18,7 +18,6 @@ class autoForm
     }
 
     public static function formAForm($value, $boolStr) {
-        var_dump($value);
         autoForm::formBasicPlus('Prénom', 'first_name', $value['first_name']);
         autoForm::formBasicPlus('Nom', 'last_name', $value['last_name']);
         autoForm::formBasicPlus('Date d\'anniversaire', 'birthday', $value['birthday']);
@@ -26,7 +25,9 @@ class autoForm
         autoForm::formBasicPlus('Mail', 'mail', $value['mail']);
         autoForm::formBasicPlus('Code Postal', 'zip_code', $value['zip_code']);
         autoForm::hiddenForm('boolSub', $boolStr);
-        autoForm::hiddenForm('id', $value['id']);
+        if(!empty($value['id'])) {
+            autoForm::hiddenForm('id', $value['id']);
+        }
     }
 
     public static function formDropDown($arr){
