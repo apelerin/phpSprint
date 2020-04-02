@@ -3,8 +3,8 @@
 
 class utilitaries
 {
-    public static $storiesDone = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14];
-    public static $storiesToDo = [10, 11, 15, 16];
+    public static $storiesDone = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14];
+    public static $storiesToDo = [10, 15, 16];
 
     public static function getSmallestNbr($a, $b, $c) {
         if ($a < $b and $a < $c) {

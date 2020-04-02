@@ -34,7 +34,7 @@ include "pages/header.php";
                 <li>Mathieu</li>
             </ul>
             <br>
-            <h3>Nombre de stories terminés (12/ 16)</h3>
+            <h3>Nombre de stories terminés (13/ 16)</h3>
             <br>
             <h3>Liste des users stories:</h3>
             <?php
