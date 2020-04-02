@@ -5,7 +5,11 @@
     require 'class/utilitaries.php';
     require 'class/request.php';
     require 'class/binaire.php';
-    require 'class/regex.php';
+    require 'class/regex_mail.php';
+    require 'class/regex_birth.php';
+    require 'class/factorielle.php';
+    require 'class/Lnom.php';
+    require 'class/chiffreRomain.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +89,12 @@ include "pages/header.php";
         ?>
     </div>
     <div id="m-2">
+                    <?php
+                    /**
+                    * this function is use to show all of First number until the user number  
+                     **/
+                    ?>
+
         <div id="story3">
             <form action="" method="post">
                 <?php
@@ -115,7 +125,43 @@ include "pages/header.php";
             }
             ?>
             </div>
+
+             <div id="story-7">
+                <form action="" method="post">
+                <?php
+                autoForm::formBasic("votre_factorielle");
+                ?>
+                <input type="submit" value="ok">
+            </form>
+            <?php 
+            if (!empty(autoForm::getInput()['votre_factorielle']))
+                getFactorielle(autoForm::getInput()['votre_factorielle']);
+            
+            
+
+            ?>
+             </div>
+
+
    
+            <div id="story-6">
+                <form action="" method="post">
+                <?php
+                autoForm::formBasic("votre nombre");
+                ?>
+                <input type="submit" value="ok">
+            </form>
+            <?php 
+            if (!empty(autoForm::getInput()['votre_nombre']))
+                getCR(autoForm::getInput()['votre_nombre']);
+            
+            
+
+            ?>
+        
+
+        </div>
+
             <div id="story-9">
                 <form action="" method="post">
                 <?php
@@ -130,9 +176,6 @@ include "pages/header.php";
             
 
             ?>
-        
-
-        </div>
         <div id="story-10">
             <form action="" method="post">
                 <?php
@@ -152,10 +195,25 @@ include "pages/header.php";
             
 
         </div>
+        <!--
+        <div id="story-11">
+            
+            <form action="" method="post">
+                <?php
+                //autoForm::formTextArea("votre liste de nom, separer par une virgule:","");
+                ?>
+                <input type="submit" value="envoyé">
+            </form>
+      
+            <?php 
+            //if (!empty(autoForm::getInput()['votre_liste_de_nom']))
+              //  getLName(autoForm::getInput()['votre_liste_de_nom']);
+            ?>
+        </div>
 
      </div>
 
-
+        -->
         <div id="story4">
             <form action="" method="post">
                 <?php
