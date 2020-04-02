@@ -1,8 +1,7 @@
 <?php
 function getRegexBirth($_Postes){
-
-		if ( preg_match( "/^([0-3][0-9]})(/)([0-9]{2,2})(/)([0-3]{2,2})$/ " , $_Postes) )
-		{
+    preg_match('/\d{2}\/\d{2}\/\d{4}/', $_Postes);
+		if (preg_match('/\d{2}\/\d{2}\/\d{4}/', $_Postes)) {
 			echo "La date est valide";
 		}
 		else {

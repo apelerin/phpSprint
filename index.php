@@ -119,6 +119,7 @@ include "pages/header.php";
                 echo $past_date;
             }
             ?>
+        </div>
         <div id="story-5">
             <h3>Story 5: Plus petit nombre</h3>
             <p>Entrez trois nombres:</p>
@@ -138,7 +139,7 @@ include "pages/header.php";
                 echo 'Result: ' . $smallest;
             }
             ?>
-            </div>
+        </div>
 
         <div id="story-6">
             <h3>Story 6: Chiffre romain</h3>
@@ -154,10 +155,10 @@ include "pages/header.php";
             ?>
         </div>
 
-             <div id="story-7">
-                <h3>Story 7: Factorielle</h3>
-                 <p>Entrez un nomnbre:</p>
-                <form action="" method="post">
+        <div id="story-7">
+            <h3>Story 7: Factorielle</h3>
+            <p>Entrez un nomnbre:</p>
+            <form action="" method="post">
                 <?php
                 autoForm::formBasic("votre_factorielle");
                 ?>
@@ -167,33 +168,34 @@ include "pages/header.php";
             if (!empty(autoForm::getInput()['votre_factorielle']))
                 getFactorielle(autoForm::getInput()['votre_factorielle']);
             ?>
-             </div>
-            <div id="story8">
-                <form action="" method="post">
-                    <?php
-                    autoForm::formBasic("decimal");
-                    ?>
-                    <input type="submit" value="Submit decimal">
-                </form>
+        </div>
+        <div id="story8">
+            <form action="" method="post">
                 <?php
-                if (!empty(autoForm::getInput()['decimal'])) {
-                    $hexa = utilitaries::convertDecToHexa(autoForm::getInput()['decimal']);
-                    echo $hexa;
-                }
+                autoForm::formBasic("decimal");
                 ?>
-            </div>
-            <div id="story-9">
-                <h3>Story 9: Conversion binaire</h3>
-                <form action="" method="post">
+                <input type="submit" value="Submit decimal">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['decimal'])) {
+                $hexa = utilitaries::convertDecToHexa(autoForm::getInput()['decimal']);
+                echo $hexa;
+            }
+            ?>
+        </div>
+        <div id="story-9">
+            <h3>Story 9: Conversion binaire</h3>
+            <form action="" method="post">
                 <?php
                 autoForm::formBasic("votre nombre");
                 ?>
                 <input type="submit" value="ok">
             </form>
-            <?php 
+            <?php
             if (!empty(autoForm::getInput()['votre_nombre']))
                 getBinaire($_POST['votre_nombre']);
             ?>
+        </div>
         <div id="story-10">
             <h3>Story 10: Check mail</h3>
             <form action="" method="post">
@@ -203,36 +205,38 @@ include "pages/header.php";
                 <input type="submit" value="envoyé">
             </form>
             <?php 
-            if (!empty(autoForm::getInput()['addresse_mail']))
+            if (!empty(autoForm::getInput()['addresse_mail'])) {
                 getRegex(autoForm::getInput()['addresse_mail']);
-
+            }
             ?>
-
-        </div>
-        <!--
-        <div id="story-11">
-            
+            <h3>Story 10: Check date</h3>
             <form action="" method="post">
                 <?php
-                //autoForm::formTextArea("votre liste de nom, separer par une virgule:","");
+                autoForm::formBasic("Date");
+                ?>
+                <input type="submit" value="envoyer">
+            </form>
+            <?php
+            if (!empty(autoForm::getInput()['Date'])) {
+                getRegexBirth(autoForm::getInput()['Date']);
+            }
+            ?>
+        </div>
+        <div id="story-11">
+            <h3>Story 11: Liste de noms triée par ordre alphabétique WIP.</h3>
+            <form action="" method="post">
+                <?php
+                autoForm::formTextArea("name_list","Liste de noms séparés par une virgule.");
                 ?>
                 <input type="submit" value="envoyé">
             </form>
-      
             <?php 
-            //if (!empty(autoForm::getInput()['votre_liste_de_nom']))
-              //  getLName(autoForm::getInput()['votre_liste_de_nom']);
+            if (!empty(autoForm::getInput()['name_list'])) {
+                getLName(autoForm::getInput()['name_list']);
+            }
             ?>
         </div>
-
      </div>
-
-        -->
-
-        </div>
-    </div>
-
-    </div>
     <div id="m-3">
         <?php
         $dbUser = 'root';
@@ -323,20 +327,10 @@ include "pages/footer.php";
             item.style.display = "none";
         }
         var node = document.getElementById(id);
-        if (node.tagName === "tr" || node.tagName === "table" || node.tagName === "td") {
-            node.style.display = "flex";
-        }
-        else {
-            node.style.display = "block";
-        }
+        node.style.display = "block";
         var all = node.getElementsByTagName('*');
         for (var i = -1, l = all.length; ++i < l;) {
-            if (all[i].tagName === "tr" || all[i].tagName === "table" || all[i].tagName === "td") {
-                all[i].style.display = "flex";
-            }
-            else {
-                all[i].style.display = "block";
-            }
+            all[i].style.display = "block";
         }
     }
 </script>
